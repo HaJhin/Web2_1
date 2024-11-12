@@ -42,15 +42,21 @@ public class BoardService2 {
                 String writer = scan.next();
 
                 // 게시물이 작성할 공간이 있는지 체크 , 임의로 게시물이 존재하지 않는 뜻 , null(선호) 또는 ""
+                // switch 변수 = 상태를 저장하는 변수
+                boolean save = false; // 처음엔 false로 저장 실패했다는 뜻
                 for (int i = 0; i < content1.length; i++) {
                     if (content1[i] == null) { // 만약 i번째 게시물이 비어있으면 입력받은 내용을 저장
                         content1[i] = content;
                         writer1[i] = writer;
-                        break;
-                    } else {
-                        System.out.println("작성 실패 : 작성할 공간이 부족합니다.");
-                    } // if~else ed
+                        save = true; // 저장에 성공했으면 변수값을 true로 변경
+                        break; // 1개를 저장했으면 변수값을 true로 변경
+                    } // if ed
                 } // for ed
+                if (!save) {
+                    System.out.println("작성에 실패했습니다.");
+                } else {
+                    System.out.println("작성에 성공했습니다.");
+                } // if~else ed
             } // if ed
                 if (choose == 2) { // 입력한 값이 2일때 게시물 출력 구현
                     for (int i = 0; i < content1.length; i++) {
