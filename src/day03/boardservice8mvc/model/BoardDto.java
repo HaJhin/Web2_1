@@ -9,6 +9,9 @@ public class BoardDto {
         this.content = content;
         this.writer = writer;
         this.pwd = pwd;
+
+    }
+
     public String getContent() {
         return content;
     }
@@ -35,10 +38,10 @@ public class BoardDto {
 
     @Override
     public String toString() {
-        return "NewBoard{" +
+        return "BoardDto{" +
                 "content='" + content + '\'' +
                 ", writer='" + writer + '\'' +
                 ", pwd=" + pwd +
                 '}';
-    } // toString ed
+    }
 }
