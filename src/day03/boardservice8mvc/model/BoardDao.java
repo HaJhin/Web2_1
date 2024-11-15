@@ -5,6 +5,15 @@ import day02.Board;
 import java.util.ArrayList;
 
 public class BoardDao {
+
+    // 싱글톤 패턴
+    private static BoardDao boardDao = new BoardDao();
+    private BoardDao(){}
+    public static BoardDao getInstance() {
+        return boardDao;
+    }
+    // 싱글톤 패턴
+
     ArrayList<BoardDto> boardDB = new ArrayList<>();
 
 
