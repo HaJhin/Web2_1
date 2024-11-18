@@ -14,7 +14,7 @@ public class FileExample {
 
             // 현재 프로젝트 내 'src -> day05 -> test1.txt' 파일을 생성한다.
             FileOutputStream fileOutput = new FileOutputStream("./src/day05/test1.txt");
-            fileOutput.write("바로 리부트 정상화".getBytes());
+            fileOutput.write("Hello Java".getBytes());
             // fileOutput(객체).write(메서드)(매개 변수/인자값1);
         } catch (FileNotFoundException e) { // [특정] 예외가 발생했을때 실행되는 코드를 작성한다.
             e.printStackTrace();
