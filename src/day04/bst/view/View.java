@@ -19,7 +19,6 @@ public class View {
         if (choose == 1) {
             boardWrite();
         } else if (choose == 2) {
-            boardPrint();
         } // if-else if ed
     } // 기능 선택 메서드 종료
 
