@@ -36,7 +36,21 @@ public class BoardDao {
 
     // 싱글톤 패턴
     private static BoardDao boardDao = new BoardDao();
-    private BoardDao(){}
+    private BoardDao(){
+        // 만약 파일을 로드하려는데 파일이 존재하지 않으면
+        // [1] 파일 경로에 따른 파일 객체화
+        File file = new File("./src/day05/boardservice9mvc/data.txt");
+        // [2] 파일이 존재하는지 확인
+        if (file.exists()) {
+            fileLoad(); // 있으면 파일 로드
+        } else {
+            try {
+                file.createNewFile(); // 없으면 파일 생성
+            } catch (IOException e) {
+                e.printStackTrace();
+            } // try catch ed
+        } // if else ed
+    } // BoardDao ed
     public static BoardDao getInstance() {
         return boardDao;
     }
@@ -61,17 +75,22 @@ public class BoardDao {
 // ====== 영구저장을 위한 게시물들을 파일에 저장하는 기능 ====== //
     public void fileSave() { // 게시물 등록을 성공했을때 지정한 함수 사용/호출
         // 여러개 게시물들을 [ArrayList<BoardDto> boardDB] 하나의 문자열[String/CSV]로 표현하는 방법
+
         String str = ""; // 1.임의의 문자열 변수 선언
+
         // 2. 반복문을 이용한 모든 게시물들을 순회/반복
         for(int i = 0; i < boardDB.size(); i++) { // 리스트 객체 내 0번 인덱스부터 마지막까지 반복
             BoardDto boardDto = boardDB.get(i); // 3. i번째의 게시물
+
             // 4. index번째의 게시물겍체 내 필드값을 CSV 형식으로 변환
             str += boardDto.getContent()+","+boardDto.getWriter()+","+boardDto.getPwd();
             // += 복합대입연산자 : 오른쪽 값을 왼쪽변수 값과 더한 후에 결과를 왼쪽 변수에 대입
+
             // 5. [객체 구분]
             str += "\n";
         } // for ed
-        System.out.println(str); // 확인용
+
+        // System.out.println(str); // 확인용
 
 
         try { // try{}catch{} : 예상치 못한 예외가 발생했을 때 다른 catch 코드로 흐름을 이동하는 문법
@@ -88,7 +107,8 @@ public class BoardDao {
         } // try catch ed
     }
 // ====== 영구저장된 파일의 게시물들을 가져오는 기능 ====== //
-    public void fileLoad() {
+    public void fileLoad() { // 프로그램이 실행될 때 1번
+        // DAO 객체(싱글톤) 생성될떄 한번
 
         try {
             // [1] 파일 입력 객체 생성
@@ -102,6 +122,22 @@ public class BoardDao {
             String str = new String(bytes);
             // 활용과제 : 파일로부터 읽어온 문자열의 게시물 정보들을 다시
             // ArrayList<BoardDto> boardDB 에 저장하시오.
+
+            // 문자열을 각 줄마다 별도의 객체로 분할
+            String[] row = str.split("\n");
+
+            for (int i = 0; i < row.length; i++) {
+                // 각 줄을 쉼표 단위로 나눠서 데이터 배열로 전환
+                String[] strs = row[i].split(",");
+                // 한 줄의 데이터들로 임시 객체 생성
+                String strs0 = strs[0];
+                String strs1 = strs[1];
+                int strs2 = Integer.parseInt(strs[2]);
+                BoardDto boardDto = new BoardDto(strs0, strs1, strs2);
+                // boardDB에 저장
+                boardDB.add(boardDto);
+                }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
