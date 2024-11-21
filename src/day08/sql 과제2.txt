@@ -1,0 +1,44 @@
+[SQL 과제2] 회원들만 구매할 수 있는 '라면' 쇼핑몰 , 데이터베이스 구축하기
+    - 요구사항
+        1. 회원은 회원가입을 진행한다. (임의)
+        2. 로그인된 상황에서 카테고리를 선택한다.
+        3. 지정된 카테고리에서 제품을 선택한다.
+        4. 지정된 제품을 장바구니에 담는다.
+            --> 여러번 장바구니에 담았을 때
+        5. 만약에 장바구니에 담긴 '불닭볶음면' 2개 , '짜파게티' 1개를 주문했다.
+        6. 하나의 주문 번호를 발급받았고 주문내역에서 지정한 주문상세를 클릭 시 주문 상세 내역(정보)가 나왔다.
+
+    - 조건
+        1. 서로 다른 테이블 간의 PK(기본키) 와 FK(외래키)를 적용하여 관계형 테이블을 만드시오.
+        2. 적절한 필드명과 타입을 사용하시오.
+        3. 적절한 제약조건을 사용하시오.
+
+
+create database noodle;
+use noodle;
+create table member( # 회원 테이블
+membernumberpk int unsigned not null auto_increment, # 회원번호는 가입 순서대로 받는 int
+id varchar(20),	# id 최대 20글자까지 받기 위해 varchar20
+password varchar(20), # password 최대 20글자까지 받기 위해 varchar20
+contact char(13), # 연락처는 XXX-XXXX-XXXX 형식으로 받기 위해 char20
+ primary key(membernumberpk)); # 회원번호-기본키
+
+ create table category( # 카테고리 테이블
+ categorynumberpk int, # 카테고리 번호-pk : 숫자로 받기 위해 int
+ categoryname char(10), # 카테고리명 : 최대 10글자까지 받기 위해 char10
+ primary key(categorynumberp)); # 카테고리번호-기본키
+
+ create table product( # 제품 테이블
+ productnumberpk int not null primary key, # 제품번호-기본키
+ productname varchar(50), # 제품명
+ productprice int, # 제품가격
+ productcount int, # 제품 개수
+ prod_cate_numfk int, # 제품카테고리번호
+ foreign key(prod_cate_numfk) references category(categorynumberpk) # 제품의 카테고리번호=카테고리번호
+ );
+
+ create table cart(
+ cartnumpk int not null primary key, # 장바구니 번호-기본키
+ productstatefk int, # 담겨있는 제품
+ foreign key(productstatefk) references product(productnumberpk)
+ );

@@ -7,3 +7,4 @@ create table kioskorder(ordernumber int,orderdate datetime);
 show tables;
 select * from product;
 insert into product(category,pname,price) values ('coffee','americano',3000);
+
