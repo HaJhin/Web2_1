@@ -2,6 +2,7 @@ package day09.boardservice10mvc.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -50,6 +51,7 @@ public class BoardDao {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb1122","root","1234");
             // [3] 확인
             System.out.println("DB 연동 성공");
+            // 연동에 실패하는 이유 : 1. 프로젝트에 jdbc 라이브러리 등록 안했다. 2. DB 연동 url 경로 오류
         } catch (ClassNotFoundException e) {
             e.getMessage();
         } catch (SQLException e) {
@@ -66,7 +68,15 @@ public class BoardDao {
 
     // 1. 게시물 등록 접근 함수
     public boolean boardWrite(BoardDto boardDto) {
-            boardDB.add(boardDto);
+            // boardDB.add(boardDto);
+        try {
+            // [1] connection.prepareStatement(DML(SQL)작성) : 연동된 DB에 SQL을 서명할 준비하는 함수. * 일반 예외
+            PreparedStatement ps = connection.prepareStatement("insert into board(bcontent,bwirter,bpwd)values('여기는java','유재석','1234')");
+            // [2] 서명된 SQL 실행
+            ps.execute();
+        } catch (SQLException e) {
+            e.getMessage();
+        }
             return true;
         }
 
