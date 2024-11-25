@@ -32,8 +32,9 @@ import java.util.ArrayList;
  */
 
 public class BoardDao {
-
+    // JDBC 인터페이스, import java.sql
     private Connection connection; // DB 연동 인터페이스 // DB 연동 결과를 가지고 있어서 DB조작이 가능한 인터페이스
+    // 연동된 결과의 연동 객체를 조작할 인터페이스
 
     // 싱글톤 패턴
     private static BoardDao boardDao = new BoardDao();
@@ -54,8 +55,11 @@ public class BoardDao {
             // 연동에 실패하는 이유 : 1. 프로젝트에 jdbc 라이브러리 등록 안했다. 2. DB 연동 url 경로 오류
         } catch (ClassNotFoundException e) {
             e.getMessage();
+            System.out.println("BoardDB Connection fail");
+            // 실패 이유 : 1. 프로젝트 내 JDBC 라이브러리 등록 2. 오타 3. DB 없음
         } catch (SQLException e) {
             e.getMessage();
+            System.out.println("BoardDB Connection fail");
         } // try catch ed
     }
     public static BoardDao getInstance() {

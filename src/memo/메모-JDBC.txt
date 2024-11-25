@@ -1,0 +1,70 @@
+[JDBC]
+    1. JAVA DATABASE CONNECT : 자바 데이터 베이스 연동
+    2. 현재 java 프로젝트의 jdbc 라이브러리 등록하기
+        1. JAVA 와 DB를 연동하는 JDBC 라이브러리
+            1. JDBC 라이브러리 설치
+            2. Select Operating System:
+                1.Platform Independent (Architecture Independent), ZIP Archive 9.1.0 [5.1M] 설치
+                2.No Thanks, just start my download
+                3.다운로드 후 압축 해제
+                4. 폴더 내 mysql-connector-j-9.1.0.jar 파일 확인
+
+        2. 현재 프로젝트 내 JDBC 라이브러리 등록/추가
+            1. 준비된 mysql.connector-j-9.1.0.jar 파일을 현재 프로젝트 내 폴더로 이동/복사
+            2. 이동/복사된 mysql-connector-j-9.1.0.jar 파일을 오른쪽 클릭 -> 가장 하단 [라이브러리 추가] 클릭
+            3. [OK]
+
+        3. 현재 프로젝트 내 외부 라이브러리 목록 확인
+            1. [file] -> [project structure] -> 왼쪽 탭 [library] 클릭
+            - 주의 : pc가 변경될때 경로 유의
+        ----------------------------------
+        [1] JDBC 라이브러리를 이용한 D[Data]A[Access]0[Object]에 DB 연동 객체 만들기
+            1. dao 생성자에서 연동 코드 작성
+
+    3. 계층간의 객체
+        - DAO [Data Access Object] : 데이터 접근 객체, 파일/DB에 접근하여 데이터를 가져올때 사용
+        - DTO [Data Transfer Object] : 데이터 이동 객체, 파일/DB에 접근하여 가져온 데이터를 VIEW 이동하기 위해 사용
+        - VO [Value Object] : 값 자체 객체, (읽기모드/setter없음)
+
+    4. DAO 에서 DB 연동
+        1. 연동할 JDBC 라이브러리 클래스 로드하기
+            Class.forName("com.mysql.cj.jdbc.Driver")
+            mysql. com.mysql.cj.jdbc.Driver
+            oracle : oracle.jdbc.OracleDriver
+        2. 지정한 DB 서버와 계정 정보가 일치 했을때 DB 연동을 시도하고 성공하면 연동객체를 반환한다.
+            DriverManager.getConnection("DB SERVER URL","계정명","비밀번호");
+            1. DB SERVER URL : jdbc:mysql://localhost:3306/db명
+            - 로컬 PC 기준 : jdbc:mysql://localhost:3306/db명
+            2. 계정명 : root
+            3. 비밀번호 : 1234
+
+    * 인터페이스 : 하나의 객체를 이용하여 서로 다른 객체를 조작하기 위한 구조
+                    동일한 목적 하에 서로 다른 행위/메서드를 조작
+
+    5. JDBC 의 핵심 인터페이스 3개
+        1. Connection 인터페이스
+            Connection conn = DriverManager.getConnection(mysql)
+            Connection conn = DriverManager.getConnection(oracle)
+            Connection conn = DriverManager.getConnection(mariaDB)
+            서로 다른 각 DB 회사에서 제공하는 클래스는 다르다.
+            하지만 하나의 인터페이스로 서로 다른 회사의 클래스를 사용/조작한다.
+        - conn.preparedStatement(SQL 문자열); : 기재한 SQL을 매개변수로 전달하면 기재한 SQl을 조작/가능/메서드 제공 객체 반환
+
+
+        2. PreparedStatement 인터페이스
+            (1) ps.setXXX(?,value)
+                - XXX : 데이터 타입
+                - ? : 기재된 SQL 내 ?의 순서번호
+                - value : 앞 매개변수 ?에 대입할 값
+
+            (2) ps.executeUpdate(); 현재 기재된 SQL을 실행하는 함수
+            (3) ResultSet rs = ps.executeQuery(); 현재 기재된 SQL을 실행하고 조회된 결과를 반환 함수
+
+
+        3. ResultSet 인터페이스 : 실행된 SQL 조회 결과를 조작하는 인터페이스
+            (1) rs.next() : 조회된 결과의 다음 레코드로 이동하는 함수
+                만약에 다음 레코드가 존재하면 true,존재하지 않으면 false
+            (2) rs.getXXX("테이블 필드명") : 현재 조회중인 레코드의 지정한 필드명의 값을 호출
+                XXX : 호출할 데이터의 타입
+                - rs.getInt("num") 'num' 필드값을 int 타입으로 호출
+                - rs.getString("content") 'content' 필드값을 String 타입으로 호출
