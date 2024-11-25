@@ -1,0 +1,15 @@
+1.BoardService1 , 변수
+2. ``2 , 배열
+3. ``3 , 객체,배열
+4. ``4 , 객체/가변길이배열
+5. ``5 , 객체/ArrayList(컬렉션프레임워크)
+6. ``6 , 객체/ArrayList(컬렉션프레임워크) / setter,getter,toString
+7. ``7 , 객체/ArrayList(컬렉션프레임워크) / setter,getter,toString / static / 메서드
+8. ``8 , 객체/ArrayList(컬렉션프레임워크) / setter,getter,toString / static / 메서드 / MVC 디자인패턴,싱글턴패턴
+9. ``9 , 객체/ArrayList(컬렉션프레임워크) / setter,getter,toString / static / 메서드 / MVC 디자인패턴,싱글턴패턴 / 파일처리
+10. ``10 , 체/ArrayList(컬렉션프레임워크) / setter,getter,toString / static / 메서드 / MVC 디자인패턴,싱글턴패턴 / DB 연동
+
+[과제] day30 - 10
+    선택1) BoardService10 코드의 BoardDao를 5번씩 따라치기
+    선택2) (출력시 게시물 번호를 dto에 넣어서 삭제 기능을 구현할 경우 게시물 번호를 입력받아 동일한 게시물 번호가 존재하면
+        삭제처리) 기능 구현하기

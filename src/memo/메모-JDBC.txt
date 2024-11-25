@@ -68,3 +68,4 @@
                 XXX : 호출할 데이터의 타입
                 - rs.getInt("num") 'num' 필드값을 int 타입으로 호출
                 - rs.getString("content") 'content' 필드값을 String 타입으로 호출
+
