@@ -7,7 +7,7 @@
 7. ``7 , 객체/ArrayList(컬렉션프레임워크) / setter,getter,toString / static / 메서드
 8. ``8 , 객체/ArrayList(컬렉션프레임워크) / setter,getter,toString / static / 메서드 / MVC 디자인패턴,싱글턴패턴
 9. ``9 , 객체/ArrayList(컬렉션프레임워크) / setter,getter,toString / static / 메서드 / MVC 디자인패턴,싱글턴패턴 / 파일처리
-10. ``10 , 체/ArrayList(컬렉션프레임워크) / setter,getter,toString / static / 메서드 / MVC 디자인패턴,싱글턴패턴 / DB 연동
+10. ``10 , 객체/ArrayList(컬렉션프레임워크) / setter,getter,toString / static / 메서드 / MVC 디자인패턴,싱글턴패턴 / DB 연동
 
 [과제] day30 - 10
     선택1) BoardService10 코드의 BoardDao를 5번씩 따라치기

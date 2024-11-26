@@ -1,0 +1,42 @@
+[CRUD]
+    1. C(create) : 쓰기/게시물 쓰기/회원가입/제품 추가
+       DB : insert into 테이블명(필드명1,필드명2,필드명3) values(값1,값2,값3);
+
+    2. R(read) : 출력/게시물 출력/내 정보 출력/제춤목록 출력
+        DB : select 필드명 from 테이블명;
+             select * from 테이블명;
+             select * from 테이블명 where 조건필드 = 조건값
+
+    3. U(update) : 수정/게시물 수정/내 정보 수정/제품 수정
+        DB : update 테이블명 set 수정할 필드명 = 수정할 값 where 조건필드 = 값
+
+    4. D(delete) : 삭제/게시물 삭제/회원 탈퇴/제품 삭제
+        DB : delete from 테이블명 where 조건필드 = 조건값
+
+    - 모든 홈페이지가 CRUD 기반
+    - 게시판이랑 회원이랑 제품이랑 채팅
+
+[CRUD MVC 개발 순서]
+    - 기능 단위 개발 : 회원기능 구현 -> 기능 세부화 : 회원가입,로그인,아이디찾기,비밀번호찾기,회원탈퇴 등등
+    - 1. 회원가입 view -> 2. 회원가입 controller -> 3. 회원가입 dao (테스트)
+        - 추천하는 순서
+            1. VIEW 구현
+            2. CONTROLLER 구현
+            3. DAO 구현
+            4. 테스트
+        - view , (controller , dao) 동일한 메서드의 기능은 메서드명 통일
+
+[삭제 기능 생각]
+    매개 변수 : 삭제할 번호
+    view <-- controller --> dao
+    리턴값 : boolean
+
+[수정 기능 생각]
+    매개 변수 : 수정할 내용,게시물 번호
+    view <-- controller --> dao
+    리턴값 :
+
+[자판기 기능 생각]
+    매개 변수 : 돈,구매할 제품 번호
+    view <-- controller --> dao
+    리턴값 : 구매한 제품, 잔돈
