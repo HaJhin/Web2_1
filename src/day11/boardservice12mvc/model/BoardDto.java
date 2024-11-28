@@ -17,6 +17,8 @@ public class BoardDto {
         this.num = num;
     }
 
+
+
     public BoardDto(String content, String writer, int num) {
         this.content = content;
         this.writer = writer;
